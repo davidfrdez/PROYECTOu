@@ -1,0 +1,68 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/estiles.css" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+<div class="menu">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="Dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Gestion">Gestion</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Productos">Productos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="Inventario">Inventario</a>
+        </li>
+    </ul>
+</div>
+<div class="imagenes">
+    <div class="trt">
+        <div>
+            <p class="letras">Proveedor</p>
+            <h4 id="Proveedor">numero</h4>
+        </div>
+        <img src="~/img/Camion.png" height="300" />
+
+    </div>
+    <div class="trt">
+        <div>
+            <p class="letras">Productos</p>
+            <h4 id="Productos">numero</h4>
+        </div>
+
+        <img src="~/img/Producto.png" height="300" />
+    </div>
+</div>
+
+<script>
+    Proveedor();
+    Productos();
+    function Proveedor() {
+        $.ajax({
+            url: '/ProyectoU/ContarProveedores',
+            type: 'GET', 
+            success: function (response) {
+                document.getElementById("Proveedor").textContent = response;
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+    function Productos() {
+        $.ajax({
+            url: '/ProyectoU/ContarProductos',
+            type: 'GET',
+            success: function (response) {
+                document.getElementById("Productos").textContent = response;
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>
